@@ -1,0 +1,13 @@
+import java.util.*;
+class Main
+{
+public static void main(String args[])
+{
+Scanner sc = new Scanner ( System.in );
+int X = sc.nextINt();
+int Y = sc.nextInt();
+
+double hyp = Math.sqrt((X*X) + (Y*Y));
+  System.out.printf("%.2f", hyp);
+}
+}
