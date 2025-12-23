@@ -1,0 +1,30 @@
+from bisect import bisect_left
+
+class Solution:
+    def maxTwoEvents(self, events):
+       
+        events.sort(key=lambda x: x[1])
+        
+        n = len(events)
+        ends = [0] * n
+        best = [0] * n
+        
+       
+        for i in range(n):
+            ends[i] = events[i][1]
+            best[i] = events[i][2]
+            if i > 0:
+                best[i] = max(best[i], best[i - 1])
+        
+        ans = 0
+        
+        for start, end, value in events:
+            
+            idx = bisect_left(ends, start) - 1
+            
+            if idx >= 0:
+                ans = max(ans, value + best[idx])
+            else:
+                ans = max(ans, value)
+        
+        return ans
